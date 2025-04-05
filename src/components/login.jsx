@@ -8,6 +8,7 @@ function Login() {
   const [inputPassword, setInputPassword] = useState('');
   const [correctUsername] = useState('adamljouad');
   const [correctPassword] = useState('1234');
+  const [loginWrong, setLoginWrong] = useState('')
 
   const navigate = useNavigate()
 
@@ -16,7 +17,7 @@ function Login() {
       console.log('Hello World')
       navigate('/dashboard')
     } else {
-      alert('Username or Password is not correct')
+      setLoginWrong('❌ Password o Username errati')
     }
   }
 
@@ -29,6 +30,7 @@ function Login() {
       <input type='password' value={inputPassword} onChange={(e) => setInputPassword(e.target.value)}></input>   
       </div>
       <button onClick={tryLogin}>Login</button>
+      <p>{loginWrong}</p>
     </>
   )
 }
