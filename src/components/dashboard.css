@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
+p {
+  margin: 5px;
+}
+
 
 .dashboard {
   margin-top: 0px;
@@ -32,13 +36,43 @@ body {
 .app-title {
   margin-left: 10px;
   margin-right: 10px;
-  color: linear-gradient(#000000 0%, #2c1b3c 60%, #4f2a61 100%);
+  background: linear-gradient(#ffffff 0%, #bc75ff 60%, #4f2a61 100%);
+  -webkit-background-clip: text;  
+  background-clip: text;  
+  color: transparent;  
 }
 
 .add-purchase-button {
   color: white;
-  background-color: linear-gradient(#000000 0%, #2c1b3c 60%, #4f2a61 100%);
+  background-color: #4f2a61;
+  margin-top: 60px;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
+.add-purchase-button:hover {
+  background-color: #bc75ff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.add-purchase-button:active {
+  transform: scale(1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-purchase-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 66, 158, 0.5);
+}
+
+
 
 .input-box {
   display: flex;
@@ -57,4 +91,156 @@ body {
 
 input {
   margin-bottom: 20px;
+}
+
+.select-dropdown {
+  color: #333;  
+  background-color: #f1f1f1;  
+  border: 2px solid #ccc; 
+  border-radius: 8px;  
+  padding: 8px 12px;  
+  font-size: 16px;  
+  transition: background-color 0.3s, border-color 0.3s; 
+  z-index: 9999;
+  width: 210px;
+  font-weight: bold;
+}
+
+.select-dropdown:hover {
+  background-color: #e0e0e0;  
+  border-color: #888;  
+}
+
+.select-dropdown:focus {
+  outline: none; 
+  border-color: #4f2a61;  
+  background-color: #edbefc;  
+}
+
+.category-cards {
+  margin: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+ul {
+  margin: 0;
+  padding: 20px;
+}
+
+.groceries-card, .rent-card, .transportation-card, 
+.entertainment-card, .shopping-card, .miscellaneous-card {
+  background-color: rgb(97, 50, 124);
+  margin: 10px;
+  border-radius: 10px;
+  width: 250px;
+  min-height: 150px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+li {
+  padding: 12px 20px;
+  margin: 8px 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+
+@media (max-width: 768px) {
+  .category-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .groceries-card, .rent-card, .transportation-card, 
+  .entertainment-card, .shopping-card, .miscellaneous-card {
+    width: 90%;
+  }
+}
+
+.groceries-card h3, 
+.rent-card h3, 
+.transportation-card h3, 
+.entertainment-card h3, 
+.shopping-card h3, 
+.miscellaneous-card h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.amount-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f1f1f1;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.amount-input:focus {
+  outline: none;
+  border-color: #4f2a61;
+  background-color: #e6e6e6;
+}
+
+.amount-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.clear-button {
+  color: white;
+  background-color: #4f2a61;
+  position: absolute;
+  right: 100px;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-button:hover {
+  background-color: #bc75ff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.clear-button:active {
+  transform: scale(1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clear-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 66, 158, 0.5);
 }
