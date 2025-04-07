@@ -7,6 +7,7 @@ function Dashboard() {
   const [purchaseAmount, setPurchaseAmount] = useState('');
   const [purchaseCategory, setPurchaseCategory] = useState('Groceries');
   let [total, setTotal] = useState(0);
+  const navigate = useNavigate();
   
   const groceryPurchases = purchases.filter(p => p.category === 'Groceries');
   const rentPurchases = purchases.filter(p => p.category === 'Rent'); 
@@ -32,6 +33,7 @@ function Dashboard() {
       alert('Amount is required')
     } else {
       const newPurchases = {
+        id: Date.now(),
         amount: purchaseAmount,
         category: purchaseCategory
       };
@@ -55,9 +57,22 @@ function Dashboard() {
     localStorage.removeItem('purchases')
   }
 
+  const removePurchase = (targetId) => {
+    setPurchases(prev => {
+      const updated = prev.filter(p => p.id !== targetId);
+      localStorage.setItem('purchases', JSON.stringify(updated));
+      return updated;
+    })
+  }
+
+  const logOut = () => {
+    navigate('/login')
+  }
+
   return (
     <div className='dashboard'>
       <div className='dashboard-header'>
+        <button className='logout-button' onClick={logOut}>Log Out</button>
         <h1 className='app-title'>TrackExpense</h1>
         <button className='clear-button' onClick={resetPurchases}>Clear History</button>
       </div>
@@ -87,6 +102,7 @@ function Dashboard() {
                 return (
                 <li key={index}>
                   ${purchase.amount}
+                  <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
               })}
@@ -99,6 +115,7 @@ function Dashboard() {
                 return (
                 <li key={index}>
                   ${purchase.amount}
+                  <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
               })}
@@ -111,6 +128,7 @@ function Dashboard() {
                 return (
                 <li key={index}>
                   ${purchase.amount}
+                  <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
               })}
@@ -123,6 +141,7 @@ function Dashboard() {
                 return (
                 <li key={index}>
                   ${purchase.amount}
+                  <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
               })}
@@ -135,6 +154,7 @@ function Dashboard() {
                 return (
                 <li key={index}>
                   ${purchase.amount}
+                  <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
               })}
@@ -147,6 +167,7 @@ function Dashboard() {
                 return (
                 <li key={index}>
                   ${purchase.amount}
+                  <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 )
               })}
