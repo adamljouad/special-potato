@@ -22,16 +22,16 @@ function Login() {
   }
 
   return (
-    <>
+    <div className='login-body'>
       <h1>Expense Tracker</h1>
       <h2>Login</h2>
       <input value={inputUsername} onChange={(e) => setInputUsername(e.target.value)}></input>
       <div>
       <input type='password' value={inputPassword} onChange={(e) => setInputPassword(e.target.value)}></input>   
       </div>
-      <button onClick={tryLogin}>Login</button>
+      <button onClick={tryLogin} className='login-button'>Login</button>
       <p>{loginWrong}</p>
-    </>
+    </div>
   )
 }
 

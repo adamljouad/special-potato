@@ -36,6 +36,41 @@
 .read-the-docs {
   color: #888;
 }
+.login-body {
+  background: linear-gradient(to bottom, #000000 0%, #2c1b3c 60%, #4f2a61 100%);
+  min-height: 100vh;
+  color: white;
+}
+
+.login-button {
+  color: white;
+  background-color: #4f2a61;
+  margin-top: 60px;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #bc75ff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:active {
+  transform: scale(1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 66, 158, 0.5);
+}
 
 
 
