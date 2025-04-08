@@ -6,18 +6,21 @@ import '../App.css'
 function Login() {
   const [inputUsername, setInputUsername] = useState('');
   const [inputPassword, setInputPassword] = useState('');
-  const [correctUsername] = useState('adamljouad');
-  const [correctPassword] = useState('1234');
+  const [correctUsername1] = useState('adamljouad');
+  const [correctPassword1] = useState('1234');
+  const [correctUsername2] = useState('valerio');
+  const [correctPassword2] = useState('1234');
   const [loginWrong, setLoginWrong] = useState('')
 
   const navigate = useNavigate()
 
   const tryLogin = () => {
-    if (inputUsername === correctUsername && inputPassword === correctPassword) {
-      console.log('Hello World')
+    if (inputUsername === correctUsername1 && inputPassword === correctPassword1) {
+      localStorage.setItem('currentUser', correctUsername1);
       navigate('/dashboard')
-    } else {
-      setLoginWrong('❌ Password o Username errati')
+    } else if (inputUsername === correctUsername2 && inputPassword === correctPassword2) {
+      localStorage.setItem('currentUser', correctUsername2)
+      navigate('/dashboard')
     }
   }
 

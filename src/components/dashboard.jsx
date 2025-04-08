@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './dashboard.css'
 
 function Dashboard() {
+  const currentUser = localStorage.getItem('currentUser')
   const [purchases, setPurchases] = useState([]);
   const [purchaseAmount, setPurchaseAmount] = useState('');
   const [purchaseCategory, setPurchaseCategory] = useState('Groceries');
@@ -17,7 +18,7 @@ function Dashboard() {
   const miscellaneousPurchases = purchases.filter(p => p.category === 'Miscellaneous');
 
   useEffect(() => {
-    const storedPurchases = localStorage.getItem('purchases');
+    const storedPurchases = localStorage.getItem(`purchases_${currentUser}`);
     if (storedPurchases) {
       try {
         setPurchases(JSON.parse(storedPurchases)); 
@@ -30,6 +31,7 @@ function Dashboard() {
 
   const addPurchase = () => {
     if (purchaseAmount === '') {
+      console.log(currentUser)
       alert('Amount is required')
     } else {
       const newPurchases = {
@@ -39,7 +41,7 @@ function Dashboard() {
       };
       setPurchases(prevPurchases => {
         const updatedPurchases = [...prevPurchases, newPurchases];
-        localStorage.setItem('purchases', JSON.stringify(updatedPurchases)); 
+        localStorage.setItem(`purchases_${currentUser}`, JSON.stringify(updatedPurchases)); 
         return updatedPurchases; 
       });
     }
@@ -54,13 +56,13 @@ function Dashboard() {
 
   const resetPurchases = () => {
     setPurchases([]);
-    localStorage.removeItem('purchases')
+    localStorage.removeItem(`purchases_${currentUser}`)
   }
 
   const removePurchase = (targetId) => {
     setPurchases(prev => {
       const updated = prev.filter(p => p.id !== targetId);
-      localStorage.setItem('purchases', JSON.stringify(updated));
+      localStorage.setItem(`purchases_${currentUser}`, JSON.stringify(updated));
       return updated;
     })
   }
@@ -77,6 +79,7 @@ function Dashboard() {
         <button className='clear-button' onClick={resetPurchases}>Clear History</button>
       </div>
       <div className='dashboard-body'>
+      <h2 className='title'>Welcome, {currentUser}</h2>
         <div className="container">
           <div className='input-box'>
             <h3>Amount</h3>
