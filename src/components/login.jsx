@@ -14,15 +14,26 @@ function Login() {
 
   const navigate = useNavigate()
 
-  const tryLogin = () => {
-    if (inputUsername === correctUsername1 && inputPassword === correctPassword1) {
-      localStorage.setItem('currentUser', correctUsername1);
-      navigate('/dashboard')
-    } else if (inputUsername === correctUsername2 && inputPassword === correctPassword2) {
-      localStorage.setItem('currentUser', correctUsername2)
-      navigate('/dashboard')
-    }
-  }
+  const tryLogin = async() => {
+      const res = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-type':'application/json'
+        },
+        body: JSON.stringify({
+          username: inputUsername,
+          password: inputPassword
+        })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        console.log("Login Effettuato", data.message)
+        navigate('/dashboard')
+      } else {
+        setLoginWrong(data.message)
+        console.log('Errore Login', data.message);
+      }
+    };
 
   return (
     <div className='login-body'>
@@ -32,7 +43,10 @@ function Login() {
       <div>
       <input type='password' value={inputPassword} onChange={(e) => setInputPassword(e.target.value)}></input>   
       </div>
-      <button onClick={tryLogin} className='login-button'>Login</button>
+      <div className='button-container'>
+        <button onClick={tryLogin} className='login-button'>Login</button>
+        <button className='register-button' onClick={() => navigate('/register')}>Register</button>
+      </div>
       <h3>{loginWrong}</h3>
     </div>
   )

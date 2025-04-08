@@ -1,0 +1,62 @@
+* {
+  font-family: 'Dosis', sans-serif;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #000000 0%, #2c1b3c 60%, #4f2a61 100%);
+  color: white;
+}
+
+.register-title {
+  font-size: 2.5rem;
+  margin-bottom: 70px;
+  background: linear-gradient(#ffffff 0%, #bc75ff 60%, #4f2a61 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  overflow: visible;
+  line-height: 1.5;
+  font-family: Montserrat;
+}
+
+.register-input {
+  width: 300px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.register-input:focus {
+  outline: none;
+  border-color: #4f2a61;
+  background-color: #e6e6e6;
+}
+
+.register-button {
+  background-color: #4f2a61;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #bc75ff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
