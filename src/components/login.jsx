@@ -27,7 +27,8 @@ function Login() {
       });
       const data = await res.json();
       if (res.ok) {
-        console.log("Login Effettuato", data.message)
+        localStorage.setItem('currentUser', inputUsername)
+        console.log("Login Effettuato", data.message, {inputUsername})
         navigate('/dashboard')
       } else {
         setLoginWrong(data.message)
