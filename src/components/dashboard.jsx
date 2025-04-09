@@ -7,8 +7,15 @@ function Dashboard() {
   const [purchases, setPurchases] = useState([]);
   const [purchaseAmount, setPurchaseAmount] = useState('');
   const [purchaseCategory, setPurchaseCategory] = useState('Groceries');
+  const [purchaseDate, setPurchaseDate] = useState()
   let [total, setTotal] = useState(0);
   const navigate = useNavigate();
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-GB', options);
+  };
   
   const groceryPurchases = purchases.filter(p => p.category === 'Groceries');
   const rentPurchases = purchases.filter(p => p.category === 'Rent'); 
@@ -37,7 +44,8 @@ function Dashboard() {
       const newPurchases = {
         id: Date.now(),
         amount: purchaseAmount,
-        category: purchaseCategory
+        category: purchaseCategory,
+        date: purchaseDate
       };
       setPurchases(prevPurchases => {
         const updatedPurchases = [...prevPurchases, newPurchases];
@@ -93,6 +101,7 @@ function Dashboard() {
               <option className='option-dropdown'>Shopping</option>
               <option className='option-dropdown'>Miscellaneous</option>
             </select>
+            <input type='date' className='date-dropdown' value={purchaseDate} onChange={(e) => setPurchaseDate(e.target.value)}></input>
           </div>
         </div>
         <button className='add-purchase-button' onClick={() => {addPurchase()}}>Add a Purchase</button>
@@ -104,7 +113,7 @@ function Dashboard() {
               {groceryPurchases.map((purchase, index) => {
                 return (
                 <li key={index}>
-                  ${purchase.amount}
+                  ${purchase.amount} <span className="purchase-date">on {formatDate(purchase.date)}</span> 
                   <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
@@ -117,7 +126,7 @@ function Dashboard() {
               {rentPurchases.map((purchase, index) => {
                 return (
                 <li key={index}>
-                  ${purchase.amount}
+                  ${purchase.amount} <span className="purchase-date">on {formatDate(purchase.date)}</span>
                   <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
@@ -130,7 +139,7 @@ function Dashboard() {
               {transportationPurchases.map((purchase, index) => {
                 return (
                 <li key={index}>
-                  ${purchase.amount}
+                  ${purchase.amount} <span className="purchase-date">on {formatDate(purchase.date)}</span>
                   <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
@@ -143,7 +152,7 @@ function Dashboard() {
               {entertainmentPurchases.map((purchase, index) => {
                 return (
                 <li key={index}>
-                  ${purchase.amount}
+                  ${purchase.amount} <span className="purchase-date">on {formatDate(purchase.date)}</span>
                   <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
@@ -156,7 +165,7 @@ function Dashboard() {
               {shoppingPurchases.map((purchase, index) => {
                 return (
                 <li key={index}>
-                  ${purchase.amount}
+                  ${purchase.amount} <span className="purchase-date">on {formatDate(purchase.date)}</span>
                   <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 );
@@ -169,7 +178,7 @@ function Dashboard() {
               {miscellaneousPurchases.map((purchase, index) => {
                 return (
                 <li key={index}>
-                  ${purchase.amount}
+                  ${purchase.amount} <span className="purchase-date">on {formatDate(purchase.date)}</span>
                   <button className='remove-button' onClick={() => removePurchase(purchase.id)}>Remove</button>
                 </li>
                 )
