@@ -40,9 +40,9 @@ function Login() {
     <div className='login-body'>
       <h1 className='title'>Expense Tracker</h1>
       <h2>Login</h2>
-      <input value={inputUsername} onChange={(e) => setInputUsername(e.target.value)}></input>
+      <input className='username-input'value={inputUsername} onChange={(e) => setInputUsername(e.target.value)}></input>
       <div>
-      <input type='password' value={inputPassword} onChange={(e) => setInputPassword(e.target.value)}></input>   
+      <input className='password-input' type='password' value={inputPassword} onChange={(e) => setInputPassword(e.target.value)}></input>   
       </div>
       <div className='button-container'>
         <button onClick={tryLogin} className='login-button'>Login</button>

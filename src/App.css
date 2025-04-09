@@ -117,6 +117,42 @@
   box-shadow: 0 0 0 3px rgba(76, 66, 158, 0.5);
 }
 
+.username-input {
+  width: 300px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.username-input:focus {
+  outline: none;
+  border-color: #4f2a61;
+  background-color: #e6e6e6;
+}
+
+.password-input {
+  width: 300px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.password-input:focus {
+  outline: none;
+  border-color: #4f2a61;
+  background-color: #e6e6e6;
+}
+
 
 
 

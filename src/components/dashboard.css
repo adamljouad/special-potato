@@ -36,6 +36,7 @@ p {
 .app-title {
   margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 20px;
   background: linear-gradient(#ffffff 0%, #bc75ff 60%, #4f2a61 100%);
   -webkit-background-clip: text;  
   background-clip: text;  
@@ -87,6 +88,7 @@ p {
 .container {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 
 input {
@@ -329,3 +331,5 @@ li:hover {
   border-color: #4f2a61;  
   background-color: #edbefc;  
 }
+
+

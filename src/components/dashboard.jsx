@@ -7,9 +7,18 @@ function Dashboard() {
   const [purchases, setPurchases] = useState([]);
   const [purchaseAmount, setPurchaseAmount] = useState('');
   const [purchaseCategory, setPurchaseCategory] = useState('Groceries');
-  const [purchaseDate, setPurchaseDate] = useState()
+  const [purchaseDate, setPurchaseDate] = useState();
+  const [categoryTotal, setCategoryTotal] = useState(0);
   let [total, setTotal] = useState(0);
   const navigate = useNavigate();
+
+  const today = new Date(Date.now())
+  useEffect(() => {
+    setPurchaseDate(today)
+  }, [])
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
 
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -62,6 +71,7 @@ function Dashboard() {
     setTotal(newTotal);  
   }, [purchases]);
 
+
   const resetPurchases = () => {
     setPurchases([]);
     localStorage.removeItem(`purchases_${currentUser}`)
@@ -88,9 +98,10 @@ function Dashboard() {
       </div>
       <div className='dashboard-body'>
       <h2 className='title'>Welcome, {currentUser}</h2>
+      <p>{day}/{month}/{year}</p>
         <div className="container">
           <div className='input-box'>
-            <h3>Amount</h3>
+            <h3 className='amount-text'>Amount</h3>
             <input className='amount-input'  value={purchaseAmount} onChange={(e) => setPurchaseAmount(e.target.value)}></input>
             <h3>Category</h3>
             <select className='select-dropdown' value={purchaseCategory} onChange={(e) => setPurchaseCategory(e.target.value)}>
@@ -186,8 +197,10 @@ function Dashboard() {
             </ul>  
           </div>
         </div>
+        <p className='coffee-text'>Built with ☕ & focus.</p>
       </div>
     </div>
+    
   )
 }
 
