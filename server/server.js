@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import mysql from 'mysql2'
 
 const app = express();
 const port = 3000;
@@ -8,28 +9,49 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json())
 
-const users = [];
 
-app.post('/register', (req, res) => {
-  const { username, password } = req.body;
-  const userExists = users.find(user => user.username === username);
-  if (userExists) {
-    res.status(401).json({userExists: true ,message:'Username already taken'})
-  } else {
-    users.push({username, password});
-    res.status(201).json({userExists: false, message:'Utente Registrato'})
-  }
+const db = mysql.createPool({
+  user: "root",
+  host: "localhost",
+  database: "trackexpense",
+  password: "Aminadamjuve2002",
+  port: 3306
 });
 
-app.post('/login', (req, res) => {
+
+app.post('/register', async (req, res) => {
   const { username, password } = req.body;
-  const userExists = users.find(user => user.username === username && user.password === password);
-  if (userExists) {
-    res.status(200).json({message:'Loggato'})
-  } else {
-    res.status(401).json({message:'Password o Username errati'})
-  }
   
+  db.execute("SELECT * FROM users WHERE username = ?", [username], (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Errore nel server' });
+    }
+
+    if (results.length > 0) {
+      return res.status(400).json({ userExists: true, message: "Nome utente già preso" });
+    }
+
+  db.execute("INSERT INTO users (username, password) VALUES (?, ?)", [username, password], (err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Errore nella registrazione' });
+    }
+    res.status(201).json({ userExists: false, message: 'Registrazione riuscita' });
+    });
+  });
+});
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  db.execute("SELECT * FROM users WHERE username = ? and password = ?", [username, password], (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Errore nel server'});
+    }
+    if (results.length > 0) {
+      res.status(200).json({ message: 'Login riuscito', userExists: true });
+    } else {
+      res.status(401).json({ message: 'Username o password errati', userExists: false });
+    }
+  });
 });
 
 app.get('/users', (req, res) => {
