@@ -10,8 +10,18 @@ function Dashboard() {
   const [purchaseDate, setPurchaseDate] = useState();
   const [categoryTotal, setCategoryTotal] = useState(0);
   let [total, setTotal] = useState(0);
-  const navigate = useNavigate();
 
+  const [loaded, setLoaded] = useState(false);
+
+  
+  
+  const navigate = useNavigate();
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+  
+  
+  
   const today = new Date(Date.now())
   useEffect(() => {
     setPurchaseDate(today)
@@ -90,7 +100,7 @@ function Dashboard() {
   }
 
   return (
-    <div className='dashboard'>
+    <div className={`dashboard ${loaded ? 'dashboard-enter' : ''}`}>
       <div className='dashboard-header'>
         <button className='logout-button' onClick={logOut}>Log Out</button>
         <h1 className='app-title'>TrackExpense</h1>

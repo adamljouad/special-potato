@@ -6,10 +6,6 @@ import '../App.css'
 function Login() {
   const [inputUsername, setInputUsername] = useState('');
   const [inputPassword, setInputPassword] = useState('');
-  const [correctUsername1] = useState('adamljouad');
-  const [correctPassword1] = useState('1234');
-  const [correctUsername2] = useState('valerio');
-  const [correctPassword2] = useState('1234');
   const [loginWrong, setLoginWrong] = useState('')
 
   const navigate = useNavigate()
@@ -29,7 +25,10 @@ function Login() {
       if (res.ok) {
         localStorage.setItem('currentUser', inputUsername)
         console.log("Login Effettuato", data.message, {inputUsername})
-        navigate('/dashboard')
+        setLoginWrong('Login Effettuato con Successo, reindirizzamento...')
+        setTimeout(() => {
+          navigate('/dashboard')
+        }, 1000)
       } else {
         setLoginWrong(data.message)
         console.log('Errore Login', data.message);
