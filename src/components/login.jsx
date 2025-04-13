@@ -11,7 +11,7 @@ function Login() {
   const navigate = useNavigate()
 
   const tryLogin = async() => {
-      const res = await fetch('http://localhost:3000/login', {
+      const res = await fetch('https://trackexpense-indol.vercel.app/login', {
         method: 'POST',
         headers: {
           'Content-type':'application/json'

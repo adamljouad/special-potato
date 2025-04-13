@@ -10,7 +10,7 @@ function Register() {
   const navigate = useNavigate()
 
   const register = async () => {
-    const res = await fetch('http://localhost:3000/register', {
+    const res = await fetch('https://trackexpense-indol.vercel.app/register', {
       method: 'POST',
       headers: {
         'Content-type':'application/json'
